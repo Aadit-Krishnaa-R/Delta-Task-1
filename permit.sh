@@ -1,5 +1,5 @@
 #changing the group of Hostels to HAD so HAD can view all files inside
-for i in GarnetA GarnetB Opal; do
+for i in Agate GarnetA GarnetB Opal; do
     sudo chgrp HAD /home/$i
     chmod g=rwx /home/$i
     # adding HAD and respective hostel warden into a group which can access the home directories of all students

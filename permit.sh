@@ -6,6 +6,10 @@ for i in Agate GarnetA GarnetB Opal; do
     sudo groupadd -f ${i}OWN
     sudo usermod -aG ${i}OWN $i
     sudo usermod -aG ${i}OWN HAD
+    sudo chgrp ${i}OWN /home/$i/announcements.txt
+    sudo chmod g=rwx /home/$i/announcements.txt
+    sudo chgrp ${i}OWN /home/$i/feeDefaulters.txt
+    sudo chmod g=rwx /home/$i/feeDefaulters.txt
 
 done
 sudo cp ./mess.txt /home/HAD/mess.txt

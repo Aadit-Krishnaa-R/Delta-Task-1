@@ -10,6 +10,7 @@ for i in GarnetA GarnetB Agate Opal; do
     #copying it to Hostel directory so warden can access it
     sudo cp ${file}/$i/announcements.txt /home/$i/announcements.txt
     sudo cp ${file}/$i/feeDefaulters.txt /home/$i/feeDefaulters.txt
+    sudo cp ./studentDetails.txt /home/$i
 done
 
 cat studentDetails.txt | while read -r -a line;
@@ -60,4 +61,12 @@ do
     sudo cp ${file}/$Hostel/$Room/$Name/userdetails.txt /home/$Name/userdetails.txt
     sudo cp ${file}/$Hostel/announcements.txt /home/$Name/announcements.txt
     sudo cp ${file}/$Hostel/feeDefaulters.txt /home/$Name/feeDefaulters.txt
+    sudo cp ./feeBreakup.sh /home/$Name/feeBreakup.sh
+    sudo cp ./feebreakup.txt /home/$Name/feebreakup.txt
+    sudo cp ./updateDefaulter.sh /home/$Hostel/updateDefaulter.sh 
+    sudo touch /home/$Name/fees.txt
+    sudo cp /home/$Name/fees.txt /home/$Hostel/$Room/$Name/fees.txt
+    sudo chmod o=rwx /home/$Name/fees.txt
+    sudo chmod o+x /home/$Name/feeBreakup.sh
+    sudo chmod o+x /home/$Hostel/updateDefaulter.sh
 done

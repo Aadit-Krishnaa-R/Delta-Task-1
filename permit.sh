@@ -1,3 +1,4 @@
+sudo chmod o=rwx /home/HAD
 #changing the group of Hostels to HAD so HAD can view all files inside
 for i in Agate GarnetA GarnetB Opal; do
     sudo chgrp HAD /home/$i
@@ -10,20 +11,22 @@ for i in Agate GarnetA GarnetB Opal; do
     sudo chmod g=rwx /home/$i/announcements.txt
     sudo chgrp ${i}OWN /home/$i/feeDefaulters.txt
     sudo chmod g=rwx /home/$i/feeDefaulters.txt
-
+    sudo chmod o-x /home/HAD/$i
 done
 sudo cp ./mess.txt /home/HAD/mess.txt
 #Giving HAD permission to home directory of all students and respective hostel warden the access to their student home directories
 cat studentDetails.txt | while read -r -a line;
 do 
     Name=${line[0]}
-    Rollno=${line[1]}
     Hostel=${line[2]}
-    Room=${line[3]}
-    Mess=${line[4]}
-    MessPref=${line[5]}
     sudo chgrp ${Hostel}OWN /home/$Name
     sudo chmod g=rwx /home/$Name
     sudo cp ./mess.txt /home/$Name/mess.txt
-
+    sudo chown $Name /home/$Name/userdetails.txt
+    sudo chgrp ${Hostel}OWN /home/$Name/feeDefaulters.txt
+    sudo chgrp ${Hostel}OWN /home/$Name/announcements.txt
+    sudo chmod g=rwx /home/$Name/feeDefaulters.txt
+    sudo chmod g=rwx /home/$Name/announcements.txt
+    sudo chgrp HAD /home/$Name/userdetails.txt
+    sudo chmod g=rwx /home/$Name/userdetails.txt
 done

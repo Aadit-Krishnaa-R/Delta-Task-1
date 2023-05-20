@@ -27,5 +27,7 @@ do
         else
             echo -e "\n$Name" | cat >> /home/$Hostel/feeDefaulters.txt
         fi
+        cp /home/$Hostel/announcements.txt /home/$Name/announcements.txt
+        cp /home/$Hostel/feeDefaulters.txt /home/$Name/feeDefaulters.txt
     fi
 done
